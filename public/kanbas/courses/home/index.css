@@ -1,0 +1,124 @@
+.top-bar {
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.top-bar > div > i {
+  color: var(--canvasRed);
+}
+
+.compact-top-bar {
+  background-color: black;
+  color: white;
+}
+
+.compact-top-bar > button {
+  font-size: 24px;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+}
+
+.compact-top-bar > div > a {
+  color: white;
+}
+
+.modules-main-content {
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.course-status-button {
+  background: #f8f4f4;
+  color: #2d3b45;
+  border: 1px solid;
+  border-color: #c7cdd1;
+  border-radius: 3px;
+  font-size: 16px;
+  line-height: 20px;
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+.publish-button {
+  padding: 6px 10px;
+}
+
+.white-on-green {
+  background-color: #9ec19a;
+  color: white;
+}
+
+.helper-button {
+  text-decoration: none;
+  padding: 6px 10px;
+  display: block;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.helper-button > i {
+  height: 16px;
+  width: 18px;
+}
+
+h4 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.view-calendar {
+  font-size: 12px;
+}
+
+.cal-event-text {
+  display: block;
+  margin-left: 35px;
+}
+
+.compact-wd-kanbas-navigation {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding-top: 24px;
+  z-index: 1000;
+  background-color: white;
+  list-style: none;
+}
+
+.compact-wd-kanbas-navigation > li {
+  margin-bottom: 24px;
+  margin-right: 48px;
+  font-size: 16px;
+  align-items: center;
+}
+
+.compact-wd-kanbas-navigation > li > a > i {
+  margin-right: 12px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+}
+
+.compact-wd-kanbas-navigation > li > i {
+  font-size: 32px;
+}
+
+.compact-wd-kanbas-navigation > li > button {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+}
+
+.compact-course-navigation {
+  list-style: none;
+  background-color: white;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 2px -2px lightgray;
+}
+
+.fa-times {
+  font-size: 16px;
+  font-weight: lighter;
+}

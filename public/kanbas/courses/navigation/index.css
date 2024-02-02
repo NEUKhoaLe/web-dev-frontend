@@ -4,8 +4,7 @@
   padding: 0px;
   width: 125px;
   margin: 0px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 24px;
 }
 .wd-navigation li {
   padding-left: 10px;
@@ -16,11 +15,13 @@
 }
 .wd-navigation li.wd-active {
   border-left: 2px solid black;
+  font-weight: bold;
 }
 .wd-navigation li.wd-active a {
   color: black;
 }
 .wd-navigation a {
-  color: red;
+  color: var(--canvasRed);
   text-decoration: none;
+  font-size: 16px;
 }
