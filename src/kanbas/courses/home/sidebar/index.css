@@ -1,0 +1,23 @@
+.course-status-button {
+  background: #f8f4f4;
+  color: #2d3b45;
+  border: 1px solid;
+  border-color: #c7cdd1;
+  border-radius: 3px;
+  font-size: 16px;
+  line-height: 20px;
+  min-height: fit-content;
+  min-width: fit-content;
+  text-decoration: none;
+  padding: 6px 10px;
+  display: block;
+  text-align: left;
+  margin-bottom: 4px;
+}
+.view-calendar {
+  font-size: 12px;
+}
+.cal-event-text {
+  display: block;
+  margin-left: 35px;
+}

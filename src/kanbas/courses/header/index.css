@@ -1,0 +1,42 @@
+.top-bar{
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.top-bar nav ol i {
+  color: var(--canvasRed);
+}
+
+.active a {
+  color: rgb(45, 59, 69);
+}
+
+button {
+  background: #f8f4f4;
+  color: #2d3b45;
+  border: 1px solid;
+  border-color: #c7cdd1;
+  border-radius: 3px;
+  padding: 6px 14px;
+  margin-bottom: 0;
+  font-size: 16px;
+  line-height: 20px;
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+.compact-top-bar {
+  background-color: black;
+  color: white;
+}
+
+.compact-top-bar > button {
+  font-size: 24px;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+}
+
+.compact-top-bar > div > a {
+  color: white;
+}
