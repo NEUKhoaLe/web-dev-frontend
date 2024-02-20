@@ -1,7 +1,7 @@
 import ModuleList from "./List";
 function Modules() {
   return (
-    <div>
+    <div style={{marginRight: 24}}>
       <ModuleList />
     </div>
   );

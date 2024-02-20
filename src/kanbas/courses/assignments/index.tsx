@@ -14,7 +14,7 @@ function Assignments() {
     <>
       <Header />
       <hr/>
-      <ul className="list-group wd-modules">
+      <ul className="list-group wd-modules" style={{marginRight: 24}}>
         <li className="list-group-item">
           <div>
             <FaEllipsisV className="me-2" /> ASSIGNMENTS
