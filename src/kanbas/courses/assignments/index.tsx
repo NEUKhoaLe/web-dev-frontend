@@ -11,10 +11,10 @@ function Assignments() {
   const assignmentList = assignments.filter(
     (assignment) => assignment.course === courseId);
   return (
-    <>
+    <span style={{marginRight: 24}}>
       <Header />
       <hr/>
-      <ul className="list-group wd-modules" style={{marginRight: 24}}>
+      <ul className="list-group wd-modules">
         <li className="list-group-item">
           <div>
             <FaEllipsisV className="me-2" /> ASSIGNMENTS
@@ -44,6 +44,6 @@ function Assignments() {
           </ul>
         </li>
       </ul>
-    </>
+    </span>
 );}
 export default Assignments;
