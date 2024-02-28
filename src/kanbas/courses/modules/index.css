@@ -47,12 +47,21 @@
   line-height: 20px;
   min-height: fit-content;
   min-width: fit-content;
-  display: flex;
   align-items: center;
 }
 
-.module-button {
+.red-button {
   background: var(--canvasRed);
+  color: white;
+}
+
+.green-button {
+  background: green;
+  color: white;
+}
+
+.blue-button {
+  background: blue;
   color: white;
 }
 
@@ -82,4 +91,14 @@
   color: var(--canvasRed);
   margin-left: 14px;
   margin-right: 14px;
+}
+
+.new-module-form div input {
+  border: 1px solid lightgray;
+  border-radius: 6px;
+}
+
+.new-module-form div textarea {
+  border-color: lightgray;
+  border-radius: 6px;
 }

@@ -1,12 +1,25 @@
-import React, { useState } from "react";
-import "./index.css";
-import { modules } from "../../database";
+import { useState } from "react";
 import { FaEllipsisV, FaCheckCircle, FaPlusCircle, FaPlus } from "react-icons/fa";
 import { useParams } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addModule,
+  deleteModule,
+  updateModule,
+  setModule,
+} from "./modulesReducer";
+import { KanbasState } from "../../store";
+import "./index.css";
+
 function ModuleList() {
   const { courseId } = useParams();
-  const modulesList = modules.filter((module) => module.course === courseId);
-  const [selectedModule, setSelectedModule] = useState(modulesList[0]);
+  const moduleList = useSelector((state: KanbasState) => 
+    state.modulesReducer.modules);
+  const module = useSelector((state: KanbasState) => 
+    state.modulesReducer.module);
+  const dispatch = useDispatch();
+  const [selectedModule, setSelectedModule] = useState(moduleList[0]);
+
   return (
     <div className="flex-fill flex-column">
       <div className="d-flex justify-content-end my-2 mx-2">
@@ -21,7 +34,7 @@ function ModuleList() {
             <option value="value4">value4</option>
           </select>
         </div>
-        <button type="button" className="wd-modules-button module-button mx-1">
+        <button type="button" className="wd-modules-button red-button mx-1">
           <FaPlus className="me-1"/> Module
         </button>
         <button type="button" className="wd-modules-button mx-1 px-2">
@@ -29,15 +42,47 @@ function ModuleList() {
         </button>
       </div>
       <hr />
+      <div className="new-module-form d-flex flex-row mb-3">
+        <div className="d-flex flex-column me-2">
+          <input value={module.name}
+            className="mb-2"
+            onChange={(e) =>
+              dispatch(setModule({ ...module, name: e.target.value }))}/>
+          <textarea value={module.description}
+            onChange={(e) => 
+              dispatch(setModule({ ...module, description: e.target.value }))}/>
+        </div>
+        <button style={{ maxHeight: 35 }} className="blue-button" 
+        onClick={() => dispatch(updateModule(module))}>
+          Update
+          </button>
+        <button 
+        style={{ maxHeight: 35 }} className="green-button" 
+        onClick={() => dispatch(addModule({ ...module, course: courseId }))}>
+          Add
+          </button>
+      </div>
       <ul className="list-group wd-modules">
-        {modulesList.map((module) => (
+        {moduleList
+          .filter((module) => module.course === courseId)
+          .map((module) => (
           <li
             className="list-group-item"
             onClick={() => setSelectedModule(module)}>
-            <div>
-              <FaEllipsisV className="me-2" />
-              {module.name}
-              <span className="float-end">
+            <div className="align-items-center d-flex justify-content-between">
+              <span>
+                <FaEllipsisV className="me-2" />
+                {module.name}
+              </span>
+              <span>
+                <button className="wd-modules-button red-button"
+                  onClick={() => dispatch(deleteModule(module._id))}>
+                  Delete
+                </button>
+                <button className="me-3 wd-modules-button green-button"
+                  onClick={() => dispatch(setModule(module))}>
+                  Edit
+                </button>
                 <FaCheckCircle className="text-success" />
                 <FaPlusCircle className="ms-2" />
                 <FaEllipsisV className="ms-2" />
