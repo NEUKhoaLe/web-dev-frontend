@@ -9,7 +9,7 @@ type Todo = {
   completed: boolean;
 }
 function WorkingWithArrays() {
-  const API = "http://localhost:4000/a5/todos";
+  const API = `${process.env.REACT_APP_API_BASE}/a5/todos`;
   const [todo, setTodo] = useState({
     id: 1, 
     title: "NodeJS Assignment",
