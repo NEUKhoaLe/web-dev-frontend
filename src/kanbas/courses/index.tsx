@@ -1,15 +1,28 @@
-import { Course } from "../../kanbas/database";
+import { Course } from "../../kanbas/types";
 import { Route, Routes, useParams, useLocation } from "react-router-dom";
 import CourseNavigation from "./navigation";
 import CourseHeader from "./header";
 import Modules from "./modules";
 import Home from "./home";
 import Assignments from "./assignments";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 
 function Courses({ courses }: { courses: Course[] }) {
   const { courseId } = useParams();
-  const course = courses.find((course) => course._id === courseId);
+  const COURSES_API = "http://localhost:4000/api/courses";
+  const [course, setCourse] = useState<any>({ _id: "" });
+  const findCourseById = async (courseId?: string) => {
+    const response = await axios.get(
+      `${COURSES_API}/${courseId}`
+    );
+    setCourse(response.data);
+  };
+  useEffect(() => {
+    findCourseById(courseId);
+  }, [courseId]);
+
   const crumbs = useLocation().pathname.split('/');
   crumbs.splice(0, 4);
   return (

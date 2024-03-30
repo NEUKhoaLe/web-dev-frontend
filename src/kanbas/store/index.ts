@@ -1,19 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modulesReducer from "../courses/modules/modulesReducer";
-
-type Lesson = {
-  _id: string;
-  name: string;
-  description: string;
-  module: string;
-};
-type Module = {
-  _id: string;
-  name: string;
-  description: string;
-  course: string;
-  lessons: Lesson[];
-};
+import { Module } from "../types";
 
 export interface KanbasState {
   modulesReducer: {
