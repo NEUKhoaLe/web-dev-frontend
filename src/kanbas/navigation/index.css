@@ -1,0 +1,65 @@
+.wd-kanbas-navigation {
+  background-color: black;
+  list-style: none;
+  align-items: center;
+  padding: 0px;  margin: 0px;
+  width: 80px;
+  height: inherit;
+}
+.wd-kanbas-navigation li {
+  padding: 10px;     margin-bottom: 10px;
+  font-size: 0.8em;  text-align: center;
+}
+.wd-kanbas-navigation li.wd-active {
+  background-color: white;
+}
+.wd-kanbas-navigation li.wd-active a {
+  color: var(--canvasRed);
+}
+.wd-kanbas-navigation li a {
+  color: white;
+  text-decoration: none;
+}
+.wd-kanbas-navigation li a i {
+  color: var(--canvasRed);
+}
+.wd-kanbas-navigation li a i.Account {
+  color: white;
+}
+.wd-kanbas-navigation li.wd-active a i.Account {
+  color: var(--canvasRed);
+}
+
+.compact-wd-kanbas-navigation {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding-top: 24px;
+  z-index: 1000;
+  background-color: white;
+  list-style: none;
+}
+
+.compact-wd-kanbas-navigation > li {
+  margin-bottom: 24px;
+  margin-right: 48px;
+  font-size: 16px;
+  align-items: center;
+}
+
+.compact-wd-kanbas-navigation > li > a > i {
+  margin-right: 12px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+}
+
+.compact-wd-kanbas-navigation > li > i {
+  font-size: 32px;
+}
+
+.compact-wd-kanbas-navigation > li > button {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+}

@@ -1,0 +1,32 @@
+.wd-kanbas-navigation {
+  background-color: black;
+  list-style: none;
+  padding: 0px;  margin: 0px;
+  width: 80px;
+  height: 100%;
+}
+.wd-kanbas-navigation li {
+  padding: 10px;     margin-bottom: 10px;
+  font-size: 0.8em;  text-align: center;
+}
+.wd-kanbas-navigation li.wd-active {
+  background-color: white;
+}
+.wd-kanbas-navigation li.wd-active a {
+  color: var(--canvasRed);
+}
+.wd-kanbas-navigation a {
+  color: white;
+  text-decoration: none;
+}
+.wd-kanbas-navigation a h1 {
+  color: var(--canvasRed);
+}
+.wd-kanbas-navigation a i {
+  color: var(--canvasRed);
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+.wd-kanbas-navigation a i.fa.fa-user {
+  color: white;
+}
