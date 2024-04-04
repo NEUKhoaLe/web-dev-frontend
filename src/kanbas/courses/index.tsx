@@ -1,25 +1,26 @@
-import { Course } from "../../kanbas/types";
 import { Route, Routes, useParams, useLocation } from "react-router-dom";
 import CourseNavigation from "./navigation";
 import CourseHeader from "./header";
 import Modules from "./modules";
 import Home from "./home";
 import Assignments from "./assignments";
+import Quizzes from "./quizzes";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 
-function Courses({ courses }: { courses: Course[] }) {
+function Courses() {
   const { courseId } = useParams();
-  const COURSES_API = "http://localhost:4000/api/courses";
+  const API_BASE = process.env.REACT_APP_API_BASE;
+  const COURSES_API = `${API_BASE}/api/courses`;
   const [course, setCourse] = useState<any>({ _id: "" });
-  const findCourseById = async (courseId?: string) => {
-    const response = await axios.get(
-      `${COURSES_API}/${courseId}`
-    );
-    setCourse(response.data);
-  };
   useEffect(() => {
+    const findCourseById = async (courseId?: string) => {
+      const response = await axios.get(
+        `${COURSES_API}/${courseId}`
+      );
+      setCourse(response.data);
+    };
     findCourseById(courseId);
   }, [courseId]);
 
@@ -47,6 +48,7 @@ function Courses({ courses }: { courses: Course[] }) {
             <Route path="Assignments" element={<Assignments/>} />
             <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
             <Route path="Grades" element={<h1>Grades</h1>} />
+            <Route path="Quizzes" element={<Quizzes />} />
           </Routes>
         </div>
       </div>

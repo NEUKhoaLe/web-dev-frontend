@@ -1,0 +1,19 @@
+.quiz-name-text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20.8px;
+  color: rgb(45, 59, 69);
+}
+
+.quiz-sub-text a {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.quiz-sub-text span {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: rgb(45, 59, 69);
+}
