@@ -1,4 +1,3 @@
-import { Course } from "../../kanbas/types";
 import { Route, Routes, useParams, useLocation } from "react-router-dom";
 import CourseNavigation from "./navigation";
 import CourseHeader from "./header";
@@ -9,7 +8,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 
-function Courses({ courses }: { courses: Course[] }) {
+function Courses() {
   const { courseId } = useParams();
   const API_BASE = process.env.REACT_APP_API_BASE;
   const COURSES_API = `${API_BASE}/api/courses`;
