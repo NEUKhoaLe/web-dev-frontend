@@ -10,3 +10,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+body {
+  font-family: "Lato Extended", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

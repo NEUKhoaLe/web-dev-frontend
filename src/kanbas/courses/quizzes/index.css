@@ -5,15 +5,20 @@
   color: rgb(45, 59, 69);
 }
 
-.quiz-sub-text a {
+.quiz-sub-text {
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
+  color: rgb(76, 88, 96);
+  box-sizing: border-box;
 }
 
 .quiz-sub-text span {
   font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  color: rgb(45, 59, 69);
+  font-weight: 700;
+}
+
+.quiz-icon {
+  width: 40px;
+  height: 40px;
 }
