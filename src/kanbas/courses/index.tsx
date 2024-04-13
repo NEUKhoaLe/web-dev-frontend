@@ -22,7 +22,7 @@ function Courses() {
       setCourse(response.data);
     };
     findCourseById(courseId);
-  }, [courseId]);
+  }, [COURSES_API, courseId]);
 
   const crumbs = useLocation().pathname.split('/');
   crumbs.splice(0, 4);
