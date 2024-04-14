@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Module } from "../../types";
+import { nanoid } from "@reduxjs/toolkit";
 
 
 const initialState = {
   modules: [] as Module[],
-  module: { name: "New Module 123", description: "New Description" },
+  module: { id: nanoid(), name: "New Module 123", description: "New Description", lessons: [] },
 };
 
 
@@ -20,6 +21,7 @@ const modulesSlice = createSlice({
         { ...action.payload, _id: new Date().getTime().toString() },
           ...state.modules,
       ];
+      state.module = { ...state.module, id: nanoid() }
     },
     deleteModule: (state, action) => {
       state.modules = state.modules.filter(

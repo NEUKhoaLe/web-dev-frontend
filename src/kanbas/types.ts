@@ -1,20 +1,25 @@
 type Course = {
   _id: string;
+  id: string;
   name: string;
   number: string;
   startDate: string;
   endDate: string;
-  image: string;
+  department: string;
+  credits: number;
+  description: string;
 }
 
 type Lesson = {
-  _id: string;
+  id: string;
   name: string;
   description: string;
   module: string;
 };
+
 type Module = {
   _id: string;
+  id: string;
   name: string;
   description: string;
   course: string;

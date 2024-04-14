@@ -4,26 +4,21 @@ import CourseHeader from "./header";
 import Modules from "./modules";
 import Home from "./home";
 import Assignments from "./assignments";
-import Quizzes from "./quizzes";
-import QuizDetails from "./quizzes/details";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { findCourseById as clientCourseFindById } from "./client";
 
 
 function Courses() {
   const { courseId } = useParams();
-  const API_BASE = process.env.REACT_APP_API_BASE;
-  const COURSES_API = `${API_BASE}/api/courses`;
   const [course, setCourse] = useState<any>({ _id: "" });
+  const findCourseById = async (courseId: string) => {
+    const currentCourse = await clientCourseFindById(courseId);
+    setCourse(currentCourse);
+  };
   useEffect(() => {
-    const findCourseById = async (courseId?: string) => {
-      const response = await axios.get(
-        `${COURSES_API}/${courseId}`
-      );
-      setCourse(response.data);
-    };
+    if (!courseId) return;
     findCourseById(courseId);
-  }, [COURSES_API, courseId]);
+  }, [courseId]);
 
   const crumbs = useLocation().pathname.split('/');
   crumbs.splice(0, 4);
@@ -49,8 +44,6 @@ function Courses() {
             <Route path="Assignments" element={<Assignments/>} />
             <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
             <Route path="Grades" element={<h1>Grades</h1>} />
-            <Route path="Quizzes" element={<Quizzes />} />
-            <Route path="Quizzes/:quizId" element={<QuizDetails />} />
           </Routes>
         </div>
       </div>

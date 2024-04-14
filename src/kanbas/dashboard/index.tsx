@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaBook } from "react-icons/fa";
-import { Course } from "../database";
+import { Course } from "../types";
 import "./index.css";
 function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse }:
   { courses: Course[], 
@@ -42,17 +42,17 @@ function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, upd
             <div key={course._id} className="col" style={{ width: 300, paddingTop: 30, paddingBottom: 30 }}>
               <div className="card" style={{textWrap: "nowrap", whiteSpaceCollapse: "collapse"}}>
                 <Link to={`/Kanbas/Courses/${course._id}`}>
-                  <img src={`/images/${course.image}`} className="card-img-top" style={{ height: 150 }} alt=""/>
+                  <img src={`/images/gray.jpg`} className="card-img-top" style={{ height: 150 }} alt=""/>
                 </Link>
                 <div className="card-body">
-                  <Link to={`/Kanbas/Courses/${course._id}`}>
+                  <Link to={`/Kanbas/Courses/${course.id}`}>
                     <p className="card-title">{course.number} 39590 {course.name}</p>
                     <p className="body-text-card">{course.number}.39590.202430<br/>
                       <span className="sub-text-card">202430_1 Spring 2024 Semester Full Term</span>
                     </p>
                   </Link>
                   <div className="d-flex flex-row justify-content-between align-items-center">
-                    <Link className="assignments-icon" to={`/Kanbas/Courses/${course._id}/Assignments`}>
+                    <Link className="assignments-icon" to={`/Kanbas/Courses/${course.id}/Assignments`}>
                       <FaBook className="d-block" />
                     </Link>
                     <button onClick={(event) => {

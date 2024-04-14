@@ -5,46 +5,36 @@ import Courses from "./courses";
 import { useEffect, useState } from "react";
 import store from "./store";
 import { Provider } from "react-redux";
-import axios from "axios";
 import { Course } from "./types";
 import Account from "./account";
+import * as client from "./courses/client";
+import { nanoid } from "@reduxjs/toolkit";
 
 function Kanbas() {
-  const API_BASE = process.env.REACT_APP_API_BASE;
-  const COURSES_API = `${API_BASE}/api/courses`;
   const [courses, setCourses] = useState([] as Course[]);
   const [course, setCourse] = useState({
-    _id: "0", name: "New Course", number: "New Number",
+    _id: "0", id: "New ID", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15",
-    image: "gray.jpg"
+    department: "New Department", credits: 4,
+    description: "New Description",
   });
   const addNewCourse = async () => {
-    const response = await axios.post(COURSES_API, course);
-    setCourses([...courses, response.data as Course]);
+    setCourse({ ...course, id: nanoid() });
+    await client.addNewCourse(course);
   };
   const deleteCourse = async (courseId: string) => {
-    await axios.delete(`${COURSES_API}/${courseId}`);
-    setCourses(courses.filter((course) => course._id !== courseId));
+    await client.deleteCourse(courseId);
   };
   const updateCourse = async () => {
-    await axios.put(`${COURSES_API}/${course._id}`, course);
-    setCourses(
-      courses.map((c) => {
-        if (c._id === course._id) {
-          return course;
-        } else {
-          return c;
-        }
-      })
-    );
+    await client.updateCourse(course);
   };
   const findAllCourses = async () => {
-    const response = await axios.get(COURSES_API);
-    setCourses(response.data);
+    const courses = await client.findAllCourses();
+    setCourses(courses);
   };
   useEffect(() => {
     findAllCourses();
-  }, []);
+  }, [courses]);
 
 
   return (
