@@ -1,11 +1,11 @@
 import { FaPlus, FaEllipsisV } from "react-icons/fa";
 
-function Header() {
+function Header({ addQuiz }: { addQuiz: () => Promise<void>}){
   return (
     <div className="d-flex flex-row justify-content-between">
       <input type="text" className="form-control" placeholder="Search for Quiz" style={{width: 300}}/>
       <div className="d-flex">
-        <button type="button" className="wd-modules-button red-button mx-1">
+        <button type="button" className="wd-modules-button red-button mx-1" onClick={addQuiz}>
           <FaPlus /> Quiz
         </button>
         <button type="button" className="wd-modules-button mx-1 px-2">

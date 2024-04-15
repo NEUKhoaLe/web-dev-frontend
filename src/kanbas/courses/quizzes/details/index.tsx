@@ -7,9 +7,9 @@ function QuizDetails() {
   const { courseId, quizId } = useParams();
   const [quiz, setQuiz] = useState<Quiz>(
     {
+      _id: "",
       name: "",
       course: "",
-      quiz_id: 0,
       publish: false,
       assign_to: [],
       details: {
@@ -24,8 +24,8 @@ function QuizDetails() {
         one_question: false,
         webcam: false,
         lock_question: false,
-        available_date: "",
-        until_date: ""
+        available_date: new Date(),
+        until_date: new Date()
       },
       questions: [],
       answers: []

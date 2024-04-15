@@ -5,46 +5,86 @@ import * as client from "./client";
 import Header from "./Header";
 import "./index.css";
 import { Quiz } from "../../types";
-
+import { useNavigate } from "react-router-dom";
+import { Popover } from "react-tiny-popover";
+import QuizText from "./QuizText";
+import OptionsWithPopover from "./OptionsWithPopover";
 
 function Quizzes() {
   const { courseId } = useParams();
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+  const [activePopover, setActivePopover] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  const fetchQuizzes = async () => {
+  const getQuizSymbol = (quiz: Quiz) => {
+    return quiz.publish
+    ? <FaCheckCircle className="text-success footer-icon" onClick={() => publishQuiz(quiz._id, false)}/> 
+    : <FaBan className="footer-icon" onClick={() => publishQuiz(quiz._id, true)} />;
+  }
+
+  const addQuiz = async () => {
     if (!courseId) return;
-    const quizzes = await client.findQuizzesForCourse(courseId);
-    setQuizzes(quizzes);
+    const quiz: Quiz = {
+      _id: "",
+      name: "New Quiz",
+      course: courseId,
+      publish: false,
+      assign_to: [],
+      details: {
+        quiz_type: "Multiple Choice",
+        total_points: 0,
+        assignment_group: "1",
+        shuffle_answers: false,
+        time_limit: 0,
+        multiple_attempts: false,
+        show_correct: false,
+        access_code: "",
+        one_question: false,
+        webcam: false,
+        lock_question: false,
+        available_date: new Date(),
+        until_date: new Date()
+      },
+      questions: [],
+      answers: []
+    };
+    const newQuiz = await client.createQuiz(courseId, quiz);
+    navigate(`/Kanbas/Courses/${courseId}/Quizzes/${newQuiz._id}`);
+  };
+  const publishQuiz = async (quizId: string, publish: boolean) => {
+    if (!courseId) return;
+    await client.publishQuiz(courseId, quizId, publish);
+    const updatedQuizzes = quizzes.map((quiz) => {
+      if (quiz._id === quizId) {
+        quiz.publish = publish;
+      }
+      return quiz;
+    });
+    setQuizzes(updatedQuizzes);
+  }
+  const deleteQuiz = async (quizId: string) => {
+    if (!courseId) return;
+    await client.deleteQuiz(courseId, quizId);
+    const updatedQuizzes = quizzes.filter((quiz) => quiz._id !== quizId);
+    setQuizzes(updatedQuizzes);
   }
 
-  const getAvailabilityTextElement = (quiz: Quiz) => {
-    const currentDate = new Date();
-    const availableDate = new Date(quiz.details.available_date);
-    const untilDate = new Date(quiz.details.until_date);
-    if (currentDate > untilDate) {
-      return (<span>Closed</span>);
-    } else if (currentDate > availableDate && currentDate < untilDate) {
-      return (<span>Available</span>);
-    } else {
-      return (<><span>Not available until</span> {quiz.details.available_date}</>);
-    }
+  const togglePopover = (quizId: string) => {
+    setActivePopover(activePopover === quizId ? null : quizId);
   };
-  const getNumberOfQuestionsText = (quiz: Quiz) => {
-    const numQuestions = quiz.questions.length;
-    const footerText = numQuestions === 1 ? "Question" : "Questions";
-    return `${numQuestions} ${footerText}`;
-  }
-  const getQuizSymbol = (isPublished: boolean) => {
-    return isPublished ? <FaCheckCircle className="text-success" /> : <FaBan />;
-  }
 
   useEffect(() => {
+    const fetchQuizzes = async () => {
+      if (!courseId) return;
+      const quizzes = await client.findQuizzesForCourse(courseId);
+      setQuizzes(quizzes);
+    };
     fetchQuizzes();
   }, [courseId]);
 
   return (
     <span style={{marginRight: 24}}>
-      <Header />
+      <Header addQuiz={addQuiz} />
       <hr/>
       <ul className="list-group wd-modules">
         <li className="list-group-item">
@@ -56,17 +96,20 @@ function Quizzes() {
               <li className="list-group-item d-flex flex-row justify-content-between align-items-center">
                 <span className="d-flex flex-row align-items-center">
                   <img src={`/images/quiz-icon-${quiz.publish ? 'published' : 'unpublished'}.png`} alt="" className="mx-2 quiz-icon" />
-                  <span>
-                    <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz.quiz_id}`} className="quiz-name-text">
-                      {quiz.name}
-                    </Link> <br />
-                    <span className="quiz-sub-text" style={{fontSize: 12}}>
-                    {getAvailabilityTextElement(quiz)} | <span>Due</span> {quiz.details.until_date} | {quiz.details.total_points} pts | {getNumberOfQuestionsText(quiz)}
-                    </span>
-                  </span>
+                  <QuizText quiz={quiz} courseId={courseId} />
                 </span>
                 <span>
-                  {getQuizSymbol(quiz.publish)}<FaEllipsisV className="ms-2" /></span>
+                  <button className="clear-button">{getQuizSymbol(quiz)}</button>
+                  <OptionsWithPopover 
+                  isOpen={activePopover === quiz._id}
+                  isPublished={quiz.publish}
+                  onClickOutside={() => setActivePopover(null)}
+                  onClick={() => togglePopover(quiz._id)}
+                  onEdit={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`)}
+                  onDelete={() => deleteQuiz(quiz._id)}
+                  onPublish={() => publishQuiz(quiz._id, !quiz.publish)}
+                  />
+                </span>
               </li>))}
           </ul>
         </li>

@@ -27,9 +27,9 @@ type Module = {
 };
 
 type Quiz = {
+  _id: string;
   name: string;
   course: string;
-  quiz_id: number;
   publish: boolean;
   assign_to: AssignTo[];
   details: QuizDetails;
@@ -55,8 +55,8 @@ type QuizDetails = {
   one_question: boolean;
   webcam: boolean;
   lock_question: boolean;
-  available_date: string;
-  until_date: string;
+  available_date: Date;
+  until_date: Date;
 }
 
 type QuizQuestion = {

@@ -6,6 +6,8 @@ import Home from "./home";
 import Assignments from "./assignments";
 import { useState, useEffect } from "react";
 import { findCourseById as clientCourseFindById } from "./client";
+import Quizzes from "./quizzes";
+import QuizDetails from "./quizzes/details";
 
 
 function Courses() {
@@ -44,6 +46,8 @@ function Courses() {
             <Route path="Assignments" element={<Assignments/>} />
             <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
             <Route path="Grades" element={<h1>Grades</h1>} />
+            <Route path="Quizzes" element={<Quizzes/>} />
+            <Route path="Quizzes/:quizId" element={<QuizDetails/>} />
           </Routes>
         </div>
       </div>
