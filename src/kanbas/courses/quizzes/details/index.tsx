@@ -34,12 +34,12 @@ function QuizDetails() {
 
   useEffect(() => {
     const fetchQuiz = async () => {
-      if (!quizId) return;
-      // const data = await client.
-      // setQuiz(data);
+      if (!quizId || !courseId) return;
+      const data = await client.findQuizById(courseId, quizId);
+      setQuiz(data);
     };
     fetchQuiz();
-  }, [quizId]);
+  }, [courseId, quizId]);
   return (
     <div>
       <h1>Quizzes</h1>
