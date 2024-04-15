@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Quiz } from '../../types';
+import { dateToString } from '../../../utils';
 
 
 function QuizText({ quiz, courseId }: { quiz: Quiz, courseId: string | undefined }) {
@@ -15,12 +16,6 @@ function QuizText({ quiz, courseId }: { quiz: Quiz, courseId: string | undefined
       return (<><span>Not available until</span> {dateToString(quiz.details.available_date, false)}</>);
     }
   };
-  const dateToString = (date: Date, includeTime: boolean = true) => {
-    const wrappedDate = new Date(date);
-    const mdy = wrappedDate.toLocaleString('en-US', { month: 'short', day: 'numeric' });
-    if (!includeTime) return mdy;
-    return `${mdy} at ${wrappedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`;
-  };
   const getNumberOfQuestionsText = (quiz: Quiz) => {
     const numQuestions = quiz.questions.length;
     const footerText = numQuestions === 1 ? "Question" : "Questions";
@@ -33,7 +28,7 @@ function QuizText({ quiz, courseId }: { quiz: Quiz, courseId: string | undefined
         {quiz.name}
       </Link> <br />
       <span className="quiz-sub-text" style={{fontSize: 12}}>
-      {getAvailabilityTextElement(quiz)} | <span>Due</span> {dateToString(quiz.details.until_date)} | {quiz.details.total_points} pts | {getNumberOfQuestionsText(quiz)}
+      {getAvailabilityTextElement(quiz)} | <span>Due</span> {dateToString(quiz.details.due_date)} | {quiz.details.total_points} pts | {getNumberOfQuestionsText(quiz)}
       </span>
     </span>
   );

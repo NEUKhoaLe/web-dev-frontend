@@ -44,17 +44,18 @@ type AssignTo = {
 }
 
 type QuizDetails = {
-  quiz_type: string;
+  quiz_type: 'Graded Quiz' | 'Practice Quiz' | 'Graded Survey' | 'Ungraded Survey';
   total_points: number;
-  assignment_group: string;
+  assignment_group: 'Quizzes' | 'Exams' | 'Assignments' | 'Project';
   shuffle_answers: boolean;
   time_limit: number;
   multiple_attempts: boolean;
-  show_correct: boolean;
+  time_till_show_correct: number;
   access_code: string;
   one_question: boolean;
   webcam: boolean;
   lock_question: boolean;
+  due_date: Date;
   available_date: Date;
   until_date: Date;
 }

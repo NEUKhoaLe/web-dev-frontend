@@ -8,6 +8,7 @@ import { Quiz } from "../../types";
 import { useNavigate } from "react-router-dom";
 import QuizText from "./QuizText";
 import OptionsWithPopover from "./OptionsWithPopover";
+import { createDefaultQuiz } from "../../../utils";
 
 function Quizzes() {
   const { courseId } = useParams();
@@ -23,30 +24,7 @@ function Quizzes() {
 
   const addQuiz = async () => {
     if (!courseId) return;
-    const quiz: Quiz = {
-      _id: "",
-      name: "New Quiz",
-      course: courseId,
-      publish: false,
-      assign_to: [],
-      details: {
-        quiz_type: "Multiple Choice",
-        total_points: 0,
-        assignment_group: "1",
-        shuffle_answers: false,
-        time_limit: 0,
-        multiple_attempts: false,
-        show_correct: false,
-        access_code: "",
-        one_question: false,
-        webcam: false,
-        lock_question: false,
-        available_date: new Date(),
-        until_date: new Date()
-      },
-      questions: [],
-      answers: []
-    };
+    const quiz = createDefaultQuiz(courseId);
     const newQuiz = await client.createQuiz(courseId, quiz);
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${newQuiz._id}`);
   };
