@@ -4,6 +4,7 @@ import { Quiz } from "../../../types";
 import * as client from "../client";
 import Header from "./Header";
 import { dateToString, createDefaultQuiz } from '../../../../utils';
+import "./index.css";
 
 function QuizDetails() {
   const { courseId, quizId } = useParams();
@@ -15,6 +16,20 @@ function QuizDetails() {
     await client.publishQuiz(courseId, quizId, publish);
     setQuiz({ ...quiz, publish });
   }
+
+  const details = [
+    { label: "Quiz Type", value: quiz.details.quiz_type },
+    { label: "Points", value: quiz.details.total_points.toString() },
+    { label: "Assignment Group", value: quiz.details.assignment_group },
+    { label: "Shuffle Answers", value: quiz.details.shuffle_answers ? "Yes" : "No" },
+    { label: "Time Limit", value: `${quiz.details.time_limit} Minutes` },
+    { label: "Multiple Attempts", value: quiz.details.multiple_attempts ? "Yes" : "No" },
+    { label: "Show Correct Answers", value: quiz.details.time_till_show_correct === 0 ? "Immediately" : `${quiz.details.time_till_show_correct} Minutes` },
+    { label: "Access Code", value: quiz.details.access_code || "None"},
+    { label: "One Question at a Time", value: quiz.details.one_question ? "Yes" : "No" },
+    { label: "Webcam Required", value: quiz.details.webcam ? "Yes" : "No" },
+    { label: "Lock Questions After Answering", value: quiz.details.lock_question ? "Yes" : "No" }
+  ];
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -36,18 +51,13 @@ function QuizDetails() {
       <h1>{quiz.name}</h1>
       <div className="d-flex flex-column">
         <div className="d-flex flex-column justify-content-between">
-          <div className="d-flex flex-column">
-            <span>Quiz Type: {quiz.details.quiz_type}</span>
-            <span>Points: {quiz.details.total_points}</span>
-            <span>Assignment Group: {quiz.details.assignment_group}</span>
-            <span>Shuffle Answers: {quiz.details.shuffle_answers ? "Yes" : "No"}</span>
-            <span>Time Limit: {quiz.details.time_limit} Minutes</span>
-            <span>Multiple Attempts: {quiz.details.multiple_attempts ? "Yes" : "No"}</span>
-            <span>Show Correct Answers: {quiz.details.time_till_show_correct === 0 ? "Immediately" : `${quiz.details.time_till_show_correct === 0} Minutes`}</span>
-            <span>Access Code: {quiz.details.access_code}</span>
-            <span>One Question at a Time: {quiz.details.one_question ? "Yes" : "No"}</span>
-            <span>Webcam Required: {quiz.details.webcam ? "Yes" : "No"}</span>
-            <span>Lock Questions After Answering: {quiz.details.lock_question ? "Yes" : "No"}</span>
+          <div className="d-flex flex-column quiz-details">
+            {details.map((detail, index) => (
+              <span key={index} className="quiz-detail-item">
+                <div className="detail-label"><strong>{detail.label}</strong></div>
+                <div className="detail-value">{detail.value}</div>
+              </span>
+            ))}
           </div>
           <table className="table mt-3">
             <thead>

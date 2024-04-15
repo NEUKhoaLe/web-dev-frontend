@@ -1,0 +1,26 @@
+.quiz-details {
+  color: #333;
+  max-width: 600px;
+}
+
+.quiz-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.detail-label {
+  text-align: right;
+  flex: 1; 
+}
+
+.detail-value {
+  flex: 1;
+  margin-left: 15px; 
+}
+
+.detail-label strong {
+  font-weight: 600;
+}
+
