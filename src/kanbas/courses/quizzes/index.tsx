@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { FaCheckCircle, FaEllipsisV, FaChevronDown, FaBan } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { FaCheckCircle, FaChevronDown, FaBan } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import * as client from "./client";
 import Header from "./Header";
 import "./index.css";
 import { Quiz } from "../../types";
 import { useNavigate } from "react-router-dom";
-import { Popover } from "react-tiny-popover";
 import QuizText from "./QuizText";
 import OptionsWithPopover from "./OptionsWithPopover";
 

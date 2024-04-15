@@ -1,4 +1,3 @@
-import React from 'react';
 import { Popover } from 'react-tiny-popover';
 import { FaEllipsisV } from 'react-icons/fa';
 
