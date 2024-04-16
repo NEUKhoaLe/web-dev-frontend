@@ -1,0 +1,7 @@
+.nav-link {
+  color: var(--canvasRed);
+}
+
+.nav-link:hover {
+  color: var(--canvasRed);
+}

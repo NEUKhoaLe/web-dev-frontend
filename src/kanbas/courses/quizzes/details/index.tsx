@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { Quiz } from "../../../types";
 import * as client from "../client";
 import Header from "./Header";
@@ -8,7 +8,9 @@ import "./index.css";
 
 function QuizDetails() {
   const { courseId, quizId } = useParams();
+  const { pathname } = useLocation();
   const [quiz, setQuiz] = useState<Quiz>(createDefaultQuiz(courseId || ""));
+  const navigate = useNavigate();
 
   const handlePublish = async () => {
     if (!quizId || !courseId) return;
@@ -44,8 +46,8 @@ function QuizDetails() {
       <Header 
       isPublished={quiz.publish}
       onPublish={handlePublish}
-      onPreview={() => {}}
-      onEdit={() => {}}
+      onPreview={() => navigate(`${pathname}/Preview`)}
+      onEdit={() => navigate(`${pathname}/Edit`)}
       />
       <hr/>
       <h1>{quiz.name}</h1>
