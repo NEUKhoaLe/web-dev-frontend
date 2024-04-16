@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import { findCourseById as clientCourseFindById } from "./client";
 import Quizzes from "./quizzes";
 import QuizDetails from "./quizzes/details";
+import QuizEditor from "./quizzes/editor";
+import QuizPreview from "./quizzes/preview";
 
 
 function Courses() {
@@ -48,6 +50,8 @@ function Courses() {
             <Route path="Grades" element={<h1>Grades</h1>} />
             <Route path="Quizzes" element={<Quizzes/>} />
             <Route path="Quizzes/:quizId" element={<QuizDetails/>} />
+            <Route path="Quizzes/:quizId/edit" element={<QuizEditor/>} />
+            <Route path="Quizzes/:quizId/preview" element={<QuizPreview/>} />
           </Routes>
         </div>
       </div>
