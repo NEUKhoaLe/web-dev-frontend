@@ -20,7 +20,7 @@ function QuizEditor() {
     if (!quizId || !courseId) return;
     if (publish) quiz.publish = true;
     await editQuiz(courseId, quizId, quiz);
-    navigateToQuizList();
+    publish ? navigateToQuizList() : navigate(`/kanbas/courses/${courseId}/quizzes/${quizId}`);
   };
 
   useEffect(() => {
