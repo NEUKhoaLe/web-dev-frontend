@@ -1,4 +1,4 @@
-import { Quiz } from "../../../types";
+import { Quiz } from "../../../../types";
 
 function QuizQuestionsEditor({ quiz }: { quiz: Quiz }) {
     return (

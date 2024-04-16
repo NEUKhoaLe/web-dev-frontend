@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Quiz } from "../../../types";
 import { createDefaultQuiz } from "../../../../utils";
 import { useNavigate, useParams } from "react-router";
-import QuizDetailsEditor from "./QuizDetailsEditor";
-import QuizQuestionsEditor from "./QuizQuestionsEditor";
+import QuizDetailsEditor from "./detailsEditor";
+import QuizQuestionsEditor from "./questionsEditor";
 import Header from "./Header";
 import { findQuizById, editQuiz } from "../client";
 import "./index.css"
