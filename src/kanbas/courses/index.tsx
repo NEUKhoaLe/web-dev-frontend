@@ -26,14 +26,19 @@ function Courses() {
 
   const crumbs = useLocation().pathname.split('/');
   crumbs.splice(0, 4);
+  const getCrumbs = () => {
+    let currentPath = '';
+    const result = crumbs.map((crumb, index) => {
+      currentPath += `${currentPath === '' ? '' : '/'}${crumb}`;
+      return {text: crumb, path: currentPath};
+    });
+    return result;
+  }
   return (
     <div className="d-flex flex-column">
       <CourseHeader 
       name={course?.number || ''} 
-      breadcrumbs={crumbs.length === 0 ? [{text: 'Modules', path: ''}] : crumbs.map((crumb) => ({
-        text: crumb,
-        path: crumb
-      }))}
+      breadcrumbs={crumbs.length === 0 ? [{text: 'Modules', path: ''}] : getCrumbs()}
       />
       <hr style={{marginLeft: 24, marginRight: 24}}/>
       <div className="d-flex flex-row">
