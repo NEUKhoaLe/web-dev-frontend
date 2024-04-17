@@ -44,9 +44,10 @@ type AssignTo = {
 }
 
 type QuizDetails = {
-  quiz_type: 'Graded Quiz' | 'Practice Quiz' | 'Graded Survey' | 'Ungraded Survey';
+  quiz_type: QuizType;
+  description: string;
   total_points: number;
-  assignment_group: 'Quizzes' | 'Exams' | 'Assignments' | 'Project';
+  assignment_group: AssignmentGroup;
   shuffle_answers: boolean;
   time_limit: number;
   multiple_attempts: boolean;
@@ -60,6 +61,9 @@ type QuizDetails = {
   until_date: Date;
 }
 
+type QuizType = 'Graded Quiz' | 'Practice Quiz' | 'Graded Survey' | 'Ungraded Survey';
+type AssignmentGroup = 'Quizzes' | 'Exams' | 'Assignments' | 'Project';
+
 type QuizQuestion = {
   question_number: number;
   question_type: string;
@@ -72,4 +76,4 @@ type QuizAnswer = {
   answer: string;
 }
 
-export type { Course, Module, Lesson, Quiz };
+export type { Course, Module, Lesson, Quiz, QuizType, QuizDetails, QuizQuestion, QuizAnswer, AssignmentGroup, AssignTo};

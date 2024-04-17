@@ -15,6 +15,7 @@ export const createDefaultQuiz = (courseId: string) => {
     assign_to: [],
     details: {
       quiz_type: "Graded Quiz",
+      description: "New Quiz Description",
       total_points: 0,
       assignment_group: "Quizzes",
       shuffle_answers: true,

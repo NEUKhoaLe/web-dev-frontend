@@ -8,7 +8,7 @@ function Footer({
   onSave: () => void;
 }) {
   return (
-    <div>
+    <div className="me-5">
       <hr />
       <div className="justify-content-between d-flex flex-row align-items-center">
         <span>

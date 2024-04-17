@@ -5,3 +5,15 @@
 .nav-link:hover {
   color: var(--canvasRed);
 }
+
+.datepicker {
+  max-width: 300px;
+}
+
+.react-datetime-picker__wrapper {
+  border: none;
+}
+
+.details-assign {
+  max-width: 300px;
+}

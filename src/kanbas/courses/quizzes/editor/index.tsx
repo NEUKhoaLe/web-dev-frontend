@@ -11,16 +11,18 @@ import Footer from "./Footer";
 
 function QuizEditor() {
   const { courseId, quizId } = useParams();
-  const [quiz, setQuiz] = useState<Quiz>(createDefaultQuiz(quizId || ""));
+  const [quiz, setQuiz] = useState<Quiz>(createDefaultQuiz(courseId || ""));
+  const [quiz_id, setQuiz_id] = useState<string>("");
   const [onDetailsTab, setOnDetailsTab] = useState<boolean>(true);
   const navigate = useNavigate();
-  const navigateToQuizList = () => navigate(`/kanbas/courses/${courseId}/quizzes`);
+  const navigateToQuizList = () => navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
 
   const handleSave = async (publish: boolean) => {
     if (!quizId || !courseId) return;
     if (publish) quiz.publish = true;
-    await editQuiz(courseId, quizId, quiz);
-    publish ? navigateToQuizList() : navigate(`/kanbas/courses/${courseId}/quizzes/${quizId}`);
+    quiz._id = quiz_id;
+    await editQuiz(courseId, quiz_id, quiz);
+    publish ? navigateToQuizList() : navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
   };
 
   useEffect(() => {
@@ -28,6 +30,7 @@ function QuizEditor() {
       if (!quizId || !courseId) return;
       const data = await findQuizById(courseId, quizId);
       setQuiz(data);
+      setQuiz_id(data._id);
     };
     fetchQuiz();
   }, [courseId, quizId]);
@@ -36,11 +39,11 @@ function QuizEditor() {
     <span style={{marginRight: 24}}>
       <Header isPublished={quiz.publish} quizPoints={quiz.details.total_points}/>
       <hr/>
-      <div className="nav nav-tabs mt-2">
+      <div className="nav nav-tabs mt-2 me-5">
         <button className={`nav-link ${onDetailsTab ? "active" : ""}`} onClick={() => setOnDetailsTab(true)}>Details</button>
         <button className={`nav-link ${!onDetailsTab ? "active" : ""}`} onClick={() => setOnDetailsTab(false)}>Questions</button>
       </div>
-      {onDetailsTab ? <QuizDetailsEditor quiz={quiz} /> : <QuizQuestionsEditor quiz={quiz} />}
+      {onDetailsTab ? <QuizDetailsEditor quiz={quiz} setQuiz={setQuiz} /> : <QuizQuestionsEditor quiz={quiz} />}
       <Footer 
       onCancel={navigateToQuizList} 
       onSave={() => handleSave(false)} 
