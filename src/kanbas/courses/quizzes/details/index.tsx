@@ -21,7 +21,7 @@ function QuizDetails() {
 
   const details = [
     { label: "Quiz Type", value: quiz.details.quiz_type },
-    { label: "Points", value: quiz.details.total_points.toString() },
+    { label: "Points", value: -1 },
     { label: "Assignment Group", value: quiz.details.assignment_group },
     { label: "Shuffle Answers", value: quiz.details.shuffle_answers ? "Yes" : "No" },
     { label: "Time Limit", value: `${quiz.details.time_limit} Minutes` },

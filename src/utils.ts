@@ -6,7 +6,7 @@ export const dateToString = (date: Date, includeTime: boolean = true) => {
   if (!includeTime) return mdy;
   return `${mdy} at ${wrappedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`;
 };
-export const createDefaultQuiz = (courseId: string) => {
+export const createDefaultQuiz = (courseId: string): Quiz => {
   return {
     _id: "",
     name: "Unnamed Quiz",
@@ -16,14 +16,13 @@ export const createDefaultQuiz = (courseId: string) => {
     details: {
       quiz_type: "Graded Quiz",
       description: "New Quiz Description",
-      total_points: 0,
       assignment_group: "Quizzes",
       shuffle_answers: true,
       time_limit: 20,
       multiple_attempts: false,
       time_till_show_correct: 0,
       access_code: "",
-      one_question: false,
+      one_question: true,
       webcam: false,
       lock_question: false,
       due_date: new Date(),
@@ -32,5 +31,5 @@ export const createDefaultQuiz = (courseId: string) => {
     },
     questions: [],
     answers: []
-  } as Quiz;
+  };
 }

@@ -37,7 +37,7 @@ function QuizEditor() {
 
   return (
     <span style={{marginRight: 24}}>
-      <Header isPublished={quiz.publish} quizPoints={quiz.details.total_points}/>
+      <Header isPublished={quiz.publish} quizPoints={-1}/>
       <hr/>
       <div className="nav nav-tabs mt-2 me-5">
         <button className={`nav-link ${onDetailsTab ? "active" : ""}`} onClick={() => setOnDetailsTab(true)}>Details</button>

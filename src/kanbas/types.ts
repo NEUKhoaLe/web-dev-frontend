@@ -46,7 +46,6 @@ type AssignTo = {
 type QuizDetails = {
   quiz_type: QuizType;
   description: string;
-  total_points: number;
   assignment_group: AssignmentGroup;
   shuffle_answers: boolean;
   time_limit: number;

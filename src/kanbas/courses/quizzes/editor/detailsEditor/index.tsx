@@ -19,16 +19,6 @@ function QuizDetailsEditor({ quiz, setQuiz }: { quiz: Quiz, setQuiz: React.Dispa
       <span className="mt-3 mb-2">Quiz Instructions: </span>
       <RichTextEditor text={quiz.details.description || ""} setText={handleDescriptionChange} />
       <div>
-        <label className="mt-3 mb-2 me-2" htmlFor="points">Points: </label>
-        <input
-          type="number"
-          className="form-control"
-          style={{ maxWidth: 100 }}
-          value={quiz.details.total_points}
-          onChange={(e) => setQuiz({ ...quiz, details: { ...quiz.details, total_points: parseInt(e.target.value) }})}
-        />
-      </div>
-      <div>
         <label className="mt-3 mb-2 me-2" htmlFor="quiz-type">Quiz Type: </label>
         <select
           id="quiz-type"

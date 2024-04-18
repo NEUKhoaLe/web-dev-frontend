@@ -28,7 +28,7 @@ function QuizText({ quiz, courseId }: { quiz: Quiz, courseId: string | undefined
         {quiz.name}
       </Link> <br />
       <span className="quiz-sub-text" style={{fontSize: 12}}>
-      {getAvailabilityTextElement(quiz)} | <span>Due</span> {dateToString(quiz.details.due_date)} | {quiz.details.total_points} pts | {getNumberOfQuestionsText(quiz)}
+      {getAvailabilityTextElement(quiz)} | <span>Due</span> {dateToString(quiz.details.due_date)} | -1 pts | {getNumberOfQuestionsText(quiz)}
       </span>
     </span>
   );
