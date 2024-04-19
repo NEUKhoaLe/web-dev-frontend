@@ -1,26 +1,16 @@
 import { Quiz } from "../../../types";
-import { RxTriangleRight, RxTriangleLeft } from "react-icons/rx";
 import { PiPencilLight } from "react-icons/pi";
-
-import { findQuizById, editQuiz } from "../client";
 import { MdErrorOutline } from "react-icons/md";
-import { CgPentagonRight } from "react-icons/cg";
 import { GoQuestion } from "react-icons/go";
-
-
-
-
-import "./index.css"
-import {useLocation, useParams} from "react-router";
-import {useEffect, useState} from "react";
+import "./index.css";
+import {useLocation, useNavigate, useParams} from "react-router";
+import {useEffect, useMemo, useState} from "react";
 import * as client from "../client";
 import {createDefaultQuiz} from "../../../../utils";
+import Preview from "./index";
+import PreviewQuestion from "./PreviewQuestion";
 
-function QuizPreview(
-//     {onSubmit}: {
-//     onSubmit: () => void;
-// }
-) {
+function QuizPreview() {
     const { courseId, quizId } = useParams();
     const { pathname } = useLocation();
     const [quiz, setQuiz] = useState<Quiz>(createDefaultQuiz(courseId || ""))
@@ -34,8 +24,24 @@ function QuizPreview(
         fetchQuiz();
     }, [courseId, quizId]);
 
+    const navigate = useNavigate();
     console.log(quiz.questions);
-  return (
+    const quizPath = pathname.replace("/Preview","");
+
+    const shuffle = (array: number[]) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    };
+    const isShuffle = quiz.details.shuffle_answers;
+    const questions = quiz.questions.map(item => item.question_number)
+    const listOfQuestionNumbers = isShuffle? shuffle(questions): questions;
+    console.log("hiii")
+    console.log(listOfQuestionNumbers);
+
+    return (
     <div className="give-me-space">
         <div className="preview-header">
             <h1>{quiz.name}</h1>
@@ -47,36 +53,16 @@ function QuizPreview(
             <h1>Quiz Instructions</h1>
         </div>
         <hr/>
-        <div className="preview-body d-flex justify-content-start">
-            <div className="fs-1">
-                <CgPentagonRight />
-            </div>
-            <div className="preview-question flex-fill">
-                <div className="preview-question-title  d-flex">
-                    <span>Question X</span>
-                    <span>Y pts</span>
-                </div>
-                <div className="preview-question-body">
-                    Quiz
-                </div>
-                <div className="preview-move d-flex">
-                    <button type="button" className="preview-back wd-modules-button">
-                        <RxTriangleLeft className="fs-5" />
-                        Back
-                    </button>
-                    <button type="button" className="preview-next wd-modules-button">
-                        Next
-                        <RxTriangleRight className="fs-5" />
-                    </button>
-                </div>
-            </div>
+        <div>
+            <PreviewQuestion questionList={listOfQuestionNumbers} questions={quiz.questions}/>
         </div>
         <div className="preview-submit">
             Quiz saved at
-            <button type="button" className="wd-modules-button mx-1">Submit Quiz</button>
+
+            <button type="button" className="wd-modules-button mx-1" onClick={() => {navigate(quizPath)}}>Submit Quiz</button>
         </div>
         <div className="d-flex preview-edit-button">
-            <button type="button" className="flex-fill  wd-modules-button">
+            <button type="button" className="flex-fill  wd-modules-button" onClick={() => {navigate(quizPath+"/Edit")}}>
                 <PiPencilLight className="fs-5"/>
                 Keep Editing This Quiz
             </button>
@@ -92,3 +78,10 @@ function QuizPreview(
   );
 }
 export default QuizPreview;
+
+// grab all quiz questions
+// pass into the new one
+// in the new component, questions.map(item => item.question_number) put this into const listOfQuestionNumbers = useMemo(<>.shuffle())
+// make a useState of the current Index = 0
+// Every time they press forard ++, back --
+// {questions[index]}
