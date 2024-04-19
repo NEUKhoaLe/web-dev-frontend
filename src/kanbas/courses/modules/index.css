@@ -35,6 +35,29 @@
   margin-bottom: 20px;
 }
 
+.quiz-question-editor-button-group {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.question-editor {
+  border: 2px solid #959595;
+  padding: 18px 48px;
+  margin-bottom: 16px;
+  background-color: white;
+}
+
+.question-editor-form {
+  max-width: min-content;
+}
+
+.question-editor-points-form {
+  max-width: 100px;
+}
+
 .wd-modules-button {
   background: #f8f4f4;
   color: #2d3b45;

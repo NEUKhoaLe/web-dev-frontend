@@ -30,6 +30,5 @@ export const createDefaultQuiz = (courseId: string): Quiz => {
       until_date: new Date()
     },
     questions: [],
-    answers: []
   };
 }

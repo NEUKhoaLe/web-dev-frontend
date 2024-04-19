@@ -37,13 +37,15 @@ function QuizEditor() {
 
   return (
     <span style={{marginRight: 24}}>
-      <Header isPublished={quiz.publish} quizPoints={-1}/>
+      <Header isPublished={quiz.publish} quizPoints={quiz.questions.reduce((previousValue, currentValue, currentIndex, array) => {
+        return previousValue + currentValue.question_points
+      }, 0) }/>
       <hr/>
       <div className="nav nav-tabs mt-2 me-5">
         <button className={`nav-link ${onDetailsTab ? "active" : ""}`} onClick={() => setOnDetailsTab(true)}>Details</button>
         <button className={`nav-link ${!onDetailsTab ? "active" : ""}`} onClick={() => setOnDetailsTab(false)}>Questions</button>
       </div>
-      {onDetailsTab ? <QuizDetailsEditor quiz={quiz} setQuiz={setQuiz} /> : <QuizQuestionsEditor quiz={quiz} />}
+      {onDetailsTab ? <QuizDetailsEditor quiz={quiz} setQuiz={setQuiz} /> : <QuizQuestionsEditor quiz={quiz} setQuiz={setQuiz}/>}
       <Footer 
       onCancel={navigateToQuizList} 
       onSave={() => handleSave(false)} 

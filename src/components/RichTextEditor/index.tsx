@@ -16,7 +16,7 @@ const RichTextEditor = ({ text, setText }: { text: string, setText: (text: strin
         <button className='blank-button me-1'>Tools</button> 
         <button className='blank-button me-1'>Table</button>
       </div>
-      <ReactQuill value={text} onChange={setText} />
+      <ReactQuill value={text} onChange={setText}/>
       <div className="editor-footer">
         <div>p</div>
         <div>
