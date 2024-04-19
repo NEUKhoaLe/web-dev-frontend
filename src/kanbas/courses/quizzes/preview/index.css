@@ -38,11 +38,14 @@
 
 .preview-edit-button {
     margin: 30px 0 30px 0;
-    text-align: left;
 }
 
 .preview-question-list-item {
-    color: #c83320;
+    margin-left: 30px;
+}
+
+.preview-question-list-item #GoQuestion {
+    margin-left: 30px;
 }
 
 .preview-move {

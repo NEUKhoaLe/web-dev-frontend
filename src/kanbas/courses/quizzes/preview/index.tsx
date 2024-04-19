@@ -60,20 +60,19 @@ function QuizPreview() {
         </div>
         <div className="preview-submit">
             Quiz saved at
-
             <button type="button" className="wd-modules-button mx-1" onClick={() => {navigate(quizPath)}}>Submit Quiz</button>
         </div>
         <div className="d-flex preview-edit-button">
-            <button type="button" className="flex-fill  wd-modules-button" onClick={() => {navigate(quizPath+"/Edit")}}>
+            <button type="button" style={{textAlign: "left"}} className="flex-fill  wd-modules-button" onClick={() => {navigate(quizPath+"/Edit")}}>
                 <PiPencilLight className="fs-5"/>
                 Keep Editing This Quiz
             </button>
         </div>
         <div className="d-flex flex-column preview-question-list">
-            Questions
+            <h3>Questions</h3>
             <div className="preview-question-list-item">
                 <GoQuestion  />
-                <span>Question 1</span>
+                <span style={{color: "#c83320"}}>Question 1</span>
             </div>
         </div>
     </div>

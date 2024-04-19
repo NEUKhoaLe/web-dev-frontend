@@ -31,15 +31,15 @@ function PreviewQuestion({questionList, questions}: {questionList: number[], que
                     <span>WTF pts</span>
                 </div>
                 <div className="preview-question-body">
-                    {currentQuestion.question_type === "MCQ" &&
-                        <MCQPreview question={currentQuestion}/>
-                    }
-                    {currentQuestion.question_type === "Boolean" &&
-                        <BooleanPreview question={currentQuestion}/>
-                    }
-                    {currentQuestion.question_type === "Short" &&
-                        <ShortPreview question={currentQuestion}/>
-                    }
+                    {/*{currentQuestion.question_type === "MCQ" &&*/}
+                    {/*    <MCQPreview question={currentQuestion}/>*/}
+                    {/*}*/}
+                    {/*{currentQuestion.question_type === "Boolean" &&*/}
+                    {/*    <BooleanPreview question={currentQuestion}/>*/}
+                    {/*}*/}
+                    {/*{currentQuestion.question_type === "Short" &&*/}
+                    {/*    <ShortPreview question={currentQuestion}/>*/}
+                    {/*}*/}
                 </div>
                 <div className="preview-move d-flex">
                     <button type="button" className="preview-back wd-modules-button" onClick={() => setQuestionIndex(questionIndex - 1)}>
