@@ -8,7 +8,6 @@ import { Provider } from "react-redux";
 import { Course } from "./types";
 import Account from "./account";
 import * as client from "./courses/client";
-import { nanoid } from "@reduxjs/toolkit";
 
 function Kanbas() {
   const [courses, setCourses] = useState([] as Course[]);
@@ -18,23 +17,28 @@ function Kanbas() {
     department: "New Department", credits: 4,
     description: "New Description",
   });
+  const getMaxIdNumber = () => {
+    return courses.reduce((max, c) => Math.max(max, parseInt(c.id.slice(2))), 0);
+  }
   const addNewCourse = async () => {
-    setCourse({ ...course, id: nanoid() });
-    await client.addNewCourse(course);
+    const newCourse = await client.addNewCourse({ ...course, id: `RS${getMaxIdNumber() + 1}` });
+    setCourses([...courses, newCourse]);
   };
   const deleteCourse = async (courseId: string) => {
     await client.deleteCourse(courseId);
+    setCourses(courses.filter((c) => c._id !== courseId));
   };
   const updateCourse = async () => {
     await client.updateCourse(course);
-  };
-  const findAllCourses = async () => {
-    const courses = await client.findAllCourses();
-    setCourses(courses);
+    setCourses(courses.map((c) => c._id === course._id ? course : c));
   };
   useEffect(() => {
+    const findAllCourses = async () => {
+      const courses = await client.findAllCourses();
+      setCourses(courses);
+    };
     findAllCourses();
-  }, [courses]);
+  }, []);
 
 
   return (
