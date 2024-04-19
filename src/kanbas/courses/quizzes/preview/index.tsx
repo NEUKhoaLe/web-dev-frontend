@@ -25,7 +25,7 @@ function QuizPreview() {
     }, [courseId, quizId]);
 
     const navigate = useNavigate();
-    console.log(quiz.questions);
+    // console.log(quiz.questions);
     const quizPath = pathname.replace("/Preview","");
 
     const shuffle = (array: number[]) => {
@@ -37,9 +37,11 @@ function QuizPreview() {
     };
     const isShuffle = quiz.details.shuffle_answers;
     const questions = quiz.questions.map(item => item.question_number)
-    const listOfQuestionNumbers = isShuffle? shuffle(questions): questions;
-    console.log("hiii")
-    console.log(listOfQuestionNumbers);
+    const listOfQuestionNumbers = questions;
+        // useMemo(() => isShuffle? shuffle(questions): questions, questions);
+    // console.log("listofQN")
+    // console.log(questions);
+    // console.log("listofQN")
 
     return (
     <div className="give-me-space">
