@@ -22,7 +22,7 @@ function QuizDetailsEditor({ quiz, setQuiz }: { quiz: Quiz, setQuiz: React.Dispa
         <label className="mt-3 mb-2 me-2" htmlFor="quiz-type">Quiz Type: </label>
         <select
           id="quiz-type"
-          className="form-control"
+          className="form-select"
           style={{ maxWidth: 200 }}
           value={quiz.details.quiz_type}
           onChange={(e) => setQuiz({ ...quiz, details: { ...quiz.details, quiz_type: e.target.value as QuizType }})}
@@ -38,7 +38,7 @@ function QuizDetailsEditor({ quiz, setQuiz }: { quiz: Quiz, setQuiz: React.Dispa
         <select
           id="assignment-group"
           style={{ maxWidth: 200 }}
-          className="form-control"
+          className="form-select"
           value={quiz.details.assignment_group}
           onChange={(e) => setQuiz({ ...quiz, details: { ...quiz.details, assignment_group: e.target.value as AssignmentGroup }})}
         >

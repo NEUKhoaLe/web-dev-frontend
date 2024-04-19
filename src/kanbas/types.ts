@@ -34,7 +34,6 @@ type Quiz = {
   assign_to: AssignTo[];
   details: QuizDetails;
   questions: QuizQuestion[];
-  answers: QuizAnswer[];
 }
 
 type AssignTo = {
@@ -61,18 +60,21 @@ type QuizDetails = {
 }
 
 type QuizType = 'Graded Quiz' | 'Practice Quiz' | 'Graded Survey' | 'Ungraded Survey';
+export type QuestionType = 'Boolean' | 'Short' | 'MCQ';
 type AssignmentGroup = 'Quizzes' | 'Exams' | 'Assignments' | 'Project';
+
+export type QuizQuestionAndChoices = {
+  name: string;
+  isCorrect: boolean;
+}
 
 type QuizQuestion = {
   question_number: number;
-  question_type: string;
+  question_type: QuestionType;
   question_description: string;
-  question_choices: string[];
+  question_choices: QuizQuestionAndChoices[];
+  question_title: string;
+  question_points: number;
 }
 
-type QuizAnswer = {
-  question_number: number;
-  answer: string;
-}
-
-export type { Course, Module, Lesson, Quiz, QuizType, QuizDetails, QuizQuestion, QuizAnswer, AssignmentGroup, AssignTo};
+export type { Course, Module, Lesson, Quiz, QuizType, QuizDetails, QuizQuestion, AssignmentGroup, AssignTo};
