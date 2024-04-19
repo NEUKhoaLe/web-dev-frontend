@@ -17,3 +17,37 @@
 .details-assign {
   max-width: 300px;
 }
+
+.background-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.modal-item {
+  margin: 80px auto;
+  width: max-content;
+  height: max-content;
+}
+
+.table-question-editor {
+  margin-top: 3px;
+  margin-right: 24px;
+}
+
+.color-green {
+  color: green;
+  border-color: green;
+}
+
+.text-color-green {
+  color: green
+}
+
+.question-choices {
+  margin: 8px;
+}

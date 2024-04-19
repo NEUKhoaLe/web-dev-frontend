@@ -31,6 +31,10 @@ export const createDefaultQuiz = (courseId: string) => {
       until_date: new Date()
     },
     questions: [],
+<<<<<<< Updated upstream
     answers: []
   } as Quiz;
+=======
+  };
+>>>>>>> Stashed changes
 }

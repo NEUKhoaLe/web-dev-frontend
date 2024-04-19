@@ -21,7 +21,13 @@ function QuizDetails() {
 
   const details = [
     { label: "Quiz Type", value: quiz.details.quiz_type },
+<<<<<<< Updated upstream
     { label: "Points", value: quiz.details.total_points.toString() },
+=======
+    { label: "Points", value: quiz.questions.reduce((previousValue, currentValue, currentIndex, array) => {
+      return previousValue + currentValue.question_points
+      }, 0) },
+>>>>>>> Stashed changes
     { label: "Assignment Group", value: quiz.details.assignment_group },
     { label: "Shuffle Answers", value: quiz.details.shuffle_answers ? "Yes" : "No" },
     { label: "Time Limit", value: `${quiz.details.time_limit} Minutes` },
