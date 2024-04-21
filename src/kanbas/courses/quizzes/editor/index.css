@@ -31,7 +31,11 @@
 .modal-item {
   margin: 80px auto;
   width: 65%;
-  height: max-content;
+  max-height: 70%;
+  overflow-y: scroll;
+  position: fixed;
+  transform: translate(-50%, 0%);
+  left: 50%;
 }
 
 .table-question-editor {

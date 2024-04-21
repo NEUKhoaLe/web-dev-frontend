@@ -10,7 +10,7 @@ import BooleanPreview from "./BooleanPreview";
 import ShortPreview from "./ShortPreview";
 
 function PreviewQuestion({showAll, questionList, questions, overrideIndex, setOverrideIndex}: {showAll: boolean, questionList: number[], questions: QuizQuestion[], overrideIndex: number | null, setOverrideIndex: (n: number | null) => void}){
-    const [isBookmark, setBookmark] = useState(true);
+    const [isBookmark, setBookmark] = useState<number[]>([]);
     const [questionIndex, setQuestionIndex] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion | undefined>(questions.find(item => item.question_number === questionList.at(questionIndex)!));
 
@@ -49,9 +49,10 @@ function PreviewQuestion({showAll, questionList, questions, overrideIndex, setOv
                 return (
                     <div className="preview-body d-flex justify-content-start">
                         <div className="fs-3">
-                            {isBookmark ? <RxBookmark onClick={()=>{
-                                setBookmark(!isBookmark)}}/> : <RxBookmarkFilled onClick={()=>{
-                                setBookmark(!isBookmark)}}/>}
+                            {!isBookmark.includes(index) ? <RxBookmark onClick={()=> {
+                                setBookmark(prevState => [...prevState, index])}}/> :
+                              <RxBookmarkFilled onClick={()=> {
+                                setBookmark(prevState => prevState.filter(item => item !== index))}}/>}
                         </div>
                         <div className="preview-question flex-fill">
                             <div className="preview-question-title  d-flex">
@@ -80,9 +81,10 @@ function PreviewQuestion({showAll, questionList, questions, overrideIndex, setOv
         return (
             <div className="preview-body d-flex justify-content-start">
                 <div className="fs-3">
-                    {isBookmark ? <RxBookmark onClick={()=>{
-                        setBookmark(!isBookmark)}}/> : <RxBookmarkFilled onClick={()=>{
-                        setBookmark(!isBookmark)}}/>}
+                    {!isBookmark.includes(questionIndex) ? <RxBookmark onClick={()=> {
+                          setBookmark(prevState => [...prevState, questionIndex])}}/> :
+                      <RxBookmarkFilled onClick={()=> {
+                          setBookmark(prevState => prevState.filter(item => item !== questionIndex))}}/>}
                 </div>
                 <div className="preview-question flex-fill">
                     <div className="preview-question-title  d-flex">
