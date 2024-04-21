@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Quiz } from "../../../types";
-import { createDefaultQuiz } from "../../../../utils";
+import { calculateTotalPoints, createDefaultQuiz } from "../../../../utils";
 import { useNavigate, useParams } from "react-router";
 import QuizDetailsEditor from "./detailsEditor";
 import QuizQuestionsEditor from "./questionsEditor";
@@ -37,9 +37,7 @@ function QuizEditor() {
 
   return (
     <span style={{marginRight: 24}}>
-      <Header isPublished={quiz.publish} quizPoints={quiz.questions.reduce((previousValue, currentValue, currentIndex, array) => {
-        return previousValue + currentValue.question_points
-      }, 0) }/>
+      <Header isPublished={quiz.publish} quizPoints={calculateTotalPoints(quiz.questions)}/>
       <hr/>
       <div className="nav nav-tabs mt-2 me-5">
         <button className={`nav-link ${onDetailsTab ? "active" : ""}`} onClick={() => setOnDetailsTab(true)}>Details</button>

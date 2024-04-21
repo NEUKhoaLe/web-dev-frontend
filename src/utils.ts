@@ -1,4 +1,4 @@
-import { Quiz } from "./kanbas/types";
+import { Quiz, QuizQuestion } from "./kanbas/types";
 
 export const dateToString = (date: Date, includeTime: boolean = true) => {
   const wrappedDate = new Date(date);
@@ -31,4 +31,9 @@ export const createDefaultQuiz = (courseId: string): Quiz => {
     },
     questions: [],
   };
+}
+export const calculateTotalPoints = (questions: QuizQuestion[]) => {
+  return questions.reduce((previousValue, currentValue, currentIndex, array) => {
+    return previousValue + currentValue.question_points
+  }, 0);
 }

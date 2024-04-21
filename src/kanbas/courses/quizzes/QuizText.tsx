@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Quiz } from '../../types';
-import { dateToString } from '../../../utils';
+import { calculateTotalPoints, dateToString } from '../../../utils';
 
 
 function QuizText({ quiz, courseId }: { quiz: Quiz, courseId: string | undefined }) {
@@ -28,7 +28,7 @@ function QuizText({ quiz, courseId }: { quiz: Quiz, courseId: string | undefined
         {quiz.name}
       </Link> <br />
       <span className="quiz-sub-text" style={{fontSize: 12}}>
-      {getAvailabilityTextElement(quiz)} | <span>Due</span> {dateToString(quiz.details.due_date)} | -1 pts | {getNumberOfQuestionsText(quiz)}
+      {getAvailabilityTextElement(quiz)} | <span>Due</span> {dateToString(quiz.details.due_date)} | {calculateTotalPoints(quiz.questions)} pts | {getNumberOfQuestionsText(quiz)}
       </span>
     </span>
   );

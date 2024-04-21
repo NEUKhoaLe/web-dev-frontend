@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { Quiz } from "../../../types";
 import * as client from "../client";
 import Header from "./Header";
-import { dateToString, createDefaultQuiz } from '../../../../utils';
+import { dateToString, createDefaultQuiz, calculateTotalPoints } from '../../../../utils';
 import "./index.css";
 
 function QuizDetails() {
@@ -21,9 +21,7 @@ function QuizDetails() {
 
   const details = [
     { label: "Quiz Type", value: quiz.details.quiz_type },
-    { label: "Points", value: quiz.questions.reduce((previousValue, currentValue, currentIndex, array) => {
-      return previousValue + currentValue.question_points
-      }, 0) },
+    { label: "Points", value: calculateTotalPoints(quiz.questions) },
     { label: "Assignment Group", value: quiz.details.assignment_group },
     { label: "Shuffle Answers", value: quiz.details.shuffle_answers ? "Yes" : "No" },
     { label: "Time Limit", value: `${quiz.details.time_limit} Minutes` },
