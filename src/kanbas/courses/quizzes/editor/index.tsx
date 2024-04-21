@@ -9,7 +9,7 @@ import { findQuizById, editQuiz } from "../client";
 import "./index.css"
 import Footer from "./Footer";
 
-const QuizEditor: React.FC<{save: () => void}> = function ({save}) {
+const QuizEditor = function () {
   const { courseId, quizId } = useParams();
   const [quiz, setQuiz] = useState<Quiz>(createDefaultQuiz(courseId || ""));
   const [quiz_id, setQuiz_id] = useState<string>("");

@@ -10,7 +10,6 @@ import Quizzes from "./quizzes";
 import QuizDetails from "./quizzes/details";
 import QuizEditor from "./quizzes/editor";
 import QuizPreview from "./quizzes/preview";
-import {useNavigate} from "react-router";
 
 
 function Courses() {
