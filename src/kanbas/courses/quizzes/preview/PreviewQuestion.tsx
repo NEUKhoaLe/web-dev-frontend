@@ -15,9 +15,10 @@ function PreviewQuestion({questionList, questions}: {questionList: number[], que
     const [questionIndex, setQuestionIndex] = useState(0);
 
     const currentQuestion = questions.at(questionIndex)!;
-    console.log("papapapappa");
-    console.log(currentQuestion!);
-    console.log("pappappapa")
+    console.log("currentQuestion:");
+    console.log(currentQuestion);
+    console.log(":currentQuestion")
+    const qq: QuizQuestion = currentQuestion;
     return (
         <div className="preview-body d-flex justify-content-start">
             <div className="fs-3">
@@ -28,18 +29,18 @@ function PreviewQuestion({questionList, questions}: {questionList: number[], que
             <div className="preview-question flex-fill">
                 <div className="preview-question-title  d-flex">
                     <span>Question {questionIndex + 1}</span>
-                    <span>WTF pts</span>
+                    <span>{qq.question_points} pts</span>
                 </div>
                 <div className="preview-question-body">
-                    {/*{currentQuestion.question_type === "MCQ" &&*/}
-                    {/*    <MCQPreview question={currentQuestion}/>*/}
-                    {/*}*/}
-                    {/*{currentQuestion.question_type === "Boolean" &&*/}
-                    {/*    <BooleanPreview question={currentQuestion}/>*/}
-                    {/*}*/}
-                    {/*{currentQuestion.question_type === "Short" &&*/}
-                    {/*    <ShortPreview question={currentQuestion}/>*/}
-                    {/*}*/}
+                    {currentQuestion.question_type === "MCQ" &&
+                        <MCQPreview question={currentQuestion}/>
+                    }
+                    {currentQuestion.question_type === "Boolean" &&
+                        <BooleanPreview question={currentQuestion}/>
+                    }
+                    {currentQuestion.question_type === "Short" &&
+                        <ShortPreview question={currentQuestion}/>
+                    }
                 </div>
                 <div className="preview-move d-flex">
                     <button type="button" className="preview-back wd-modules-button" onClick={() => setQuestionIndex(questionIndex - 1)}>

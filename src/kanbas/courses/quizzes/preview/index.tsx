@@ -13,13 +13,21 @@ import PreviewQuestion from "./PreviewQuestion";
 function QuizPreview() {
     const { courseId, quizId } = useParams();
     const { pathname } = useLocation();
-    const [quiz, setQuiz] = useState<Quiz>(createDefaultQuiz(courseId || ""))
+    const [quiz, setQuiz] = useState<Quiz | null>();
+    const [questionNumbers,  setQuestionNumbers] = useState<number[]>([]);
 
     useEffect(() => {
         const fetchQuiz = async () => {
             if (!quizId || !courseId) return;
             const data = await client.findQuizById(courseId, quizId);
             setQuiz(data);
+
+            const quiz: Quiz = data;
+
+            const questions = quiz.questions.map(item => item.question_number)
+            const listOfQuestionNumbers = quiz.details.shuffle_answers ? shuffle(questions) : questions;
+
+            setQuestionNumbers(listOfQuestionNumbers);
         };
         fetchQuiz();
     }, [courseId, quizId]);
@@ -35,18 +43,11 @@ function QuizPreview() {
         }
         return array;
     };
-    const isShuffle = quiz.details.shuffle_answers;
-    const questions = quiz.questions.map(item => item.question_number)
-    const listOfQuestionNumbers = questions;
-        // useMemo(() => isShuffle? shuffle(questions): questions, questions);
-    // console.log("listofQN")
-    // console.log(questions);
-    // console.log("listofQN")
 
     return (
     <div className="give-me-space">
         <div className="preview-header">
-            <h1>{quiz.name}</h1>
+            <h1>{quiz ? quiz.name : ""}</h1>
             <div className="preview-banner">
                 <MdErrorOutline className="fs-5 me-2" />
                 This is a preview of the published version of the quiz
@@ -56,7 +57,7 @@ function QuizPreview() {
         </div>
         <hr/>
         <div>
-            <PreviewQuestion questionList={listOfQuestionNumbers} questions={quiz.questions}/>
+            {quiz && <PreviewQuestion questionList={questionNumbers} questions={quiz.questions}/> }
         </div>
         <div className="preview-submit">
             Quiz saved at
