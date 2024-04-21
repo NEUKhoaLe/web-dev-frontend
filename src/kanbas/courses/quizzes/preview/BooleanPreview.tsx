@@ -1,14 +1,16 @@
 import "./index.css";
-import {useParams} from "react-router-dom";
 import {QuizQuestion} from "../../../types";
-// import renderHTML from 'react-render-html';
+import parse from 'html-react-parser';
 
 function BooleanPreview({question}: {question: QuizQuestion}) {
 
+    const s = question.question_description;
     return(
         <div className="preview-boolean-question">
             <div>
-                {question.question_description}
+                {parse(
+                    question.question_description
+                )}
             </div>
             <hr/>
             <div>
