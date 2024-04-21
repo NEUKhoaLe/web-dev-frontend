@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {FaPlus} from "react-icons/fa";
 import MasterQuestionEditor from "./MasterQuestionEditor";
 
-function QuizQuestionsEditor({ quiz, setQuiz }: { quiz: Quiz, setQuiz: React.Dispatch<React.SetStateAction<Quiz>> }) {
+function QuizQuestionsEditor({ quiz, setQuiz, handleSave }: { quiz: Quiz, setQuiz: React.Dispatch<React.SetStateAction<Quiz>>, handleSave: () => void }) {
   const handleClick = function () {
     const length = quiz.questions.length;
 
@@ -23,8 +23,6 @@ function QuizQuestionsEditor({ quiz, setQuiz }: { quiz: Quiz, setQuiz: React.Dis
 
   const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion | null>();
 
-  console.log(quiz);
-
   return (
     <div>
       <h1>Quiz Questions Editor</h1>
@@ -32,7 +30,7 @@ function QuizQuestionsEditor({ quiz, setQuiz }: { quiz: Quiz, setQuiz: React.Dis
         (
           <div className={"background-modal"} onClick={() => setCurrentQuestion(null)}>
             <div className={"modal-item"} onClick={(e) => e.stopPropagation()}>
-              <MasterQuestionEditor question={currentQuestion} setQuiz={setQuiz} closeModal={() => setCurrentQuestion(null)}/>
+              <MasterQuestionEditor question={currentQuestion} setQuiz={setQuiz} closeModal={() => setCurrentQuestion(null)} save={handleSave}/>
             </div>
           </div>
         )

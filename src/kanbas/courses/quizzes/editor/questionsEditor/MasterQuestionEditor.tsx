@@ -3,12 +3,12 @@ import {QuestionType, Quiz, QuizQuestion} from "../../../../types";
 import MCQEditor from "./MCQEditor";
 import BooleanEditor from "./BooleanEditor";
 import ShortEditor from "./ShortEditor";
-import {current} from "@reduxjs/toolkit";
 
 export interface QuestionEditorTypesProps {
   question: QuizQuestion;
   setQuiz: React.Dispatch<React.SetStateAction<Quiz>>;
   closeModal: () => void;
+  save: () => void;
 }
 
 const MasterQuestionEditor = function (props: QuestionEditorTypesProps) {
@@ -149,6 +149,9 @@ const MasterQuestionEditor = function (props: QuestionEditorTypesProps) {
                 onClick={() => {
                   if (isValid) {
                     updateQuestion()
+                    props.setQuiz(prevState => {
+                      return {...prevState, }
+                    })
                     props.closeModal();
                   }
                 }}

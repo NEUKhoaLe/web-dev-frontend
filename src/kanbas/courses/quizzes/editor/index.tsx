@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Quiz } from "../../../types";
 import { calculateTotalPoints, createDefaultQuiz } from "../../../../utils";
 import { useNavigate, useParams } from "react-router";
@@ -9,7 +9,7 @@ import { findQuizById, editQuiz } from "../client";
 import "./index.css"
 import Footer from "./Footer";
 
-function QuizEditor() {
+const QuizEditor: React.FC<{save: () => void}> = function ({save}) {
   const { courseId, quizId } = useParams();
   const [quiz, setQuiz] = useState<Quiz>(createDefaultQuiz(courseId || ""));
   const [quiz_id, setQuiz_id] = useState<string>("");
@@ -17,11 +17,12 @@ function QuizEditor() {
   const navigate = useNavigate();
   const navigateToQuizList = () => navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
 
-  const handleSave = async (publish: boolean) => {
+  const handleSave = async (publish: boolean, shouldNav: boolean = false) => {
     if (!quizId || !courseId) return;
     if (publish) quiz.publish = true;
     quiz._id = quiz_id;
     await editQuiz(courseId, quiz_id, quiz);
+    if (!shouldNav) return;
     publish ? navigateToQuizList() : navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
   };
 
@@ -43,11 +44,11 @@ function QuizEditor() {
         <button className={`nav-link ${onDetailsTab ? "active" : ""}`} onClick={() => setOnDetailsTab(true)}>Details</button>
         <button className={`nav-link ${!onDetailsTab ? "active" : ""}`} onClick={() => setOnDetailsTab(false)}>Questions</button>
       </div>
-      {onDetailsTab ? <QuizDetailsEditor quiz={quiz} setQuiz={setQuiz} /> : <QuizQuestionsEditor quiz={quiz} setQuiz={setQuiz}/>}
+      {onDetailsTab ? <QuizDetailsEditor quiz={quiz} setQuiz={setQuiz} /> : <QuizQuestionsEditor quiz={quiz} setQuiz={setQuiz} handleSave={() => handleSave(false)}/>}
       <Footer 
       onCancel={navigateToQuizList} 
-      onSave={() => handleSave(false)} 
-      onSaveAndPublish={() => handleSave(true)}
+      onSave={() => handleSave(false, true)}
+      onSaveAndPublish={() => handleSave(true, true)}
       />
     </span>
   );
