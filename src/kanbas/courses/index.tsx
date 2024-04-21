@@ -10,6 +10,7 @@ import Quizzes from "./quizzes";
 import QuizDetails from "./quizzes/details";
 import QuizEditor from "./quizzes/editor";
 import QuizPreview from "./quizzes/preview";
+import {useNavigate} from "react-router";
 
 
 function Courses() {
@@ -36,6 +37,7 @@ function Courses() {
     });
     return result;
   }
+
   return (
     <div className="d-flex flex-column">
       <CourseHeader 
