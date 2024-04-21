@@ -1,6 +1,7 @@
 import "./index.css";
 import {useParams} from "react-router-dom";
 import {QuizQuestion} from "../../../types";
+// import renderHTML from 'react-render-html';
 
 function BooleanPreview({question}: {question: QuizQuestion}) {
 
@@ -11,11 +12,16 @@ function BooleanPreview({question}: {question: QuizQuestion}) {
             </div>
             <hr/>
             <div>
-                <input type="radio" value="True"/>
-                <label>True</label>
-                <br/>
-                <input type="radio" value="False"/>
-                <label>False</label>
+                <div className="preview-answer">
+                    <input type="radio" value="True" name="bool"/>
+                    <label>True</label>
+                </div>
+                <hr/>
+                <div className="preview-answer">
+                    <input type="radio" value="False" name="bool"/>
+                    <label>False</label>
+                </div>
+
             </div>
         </div>
     )

@@ -4,7 +4,7 @@ import { MdErrorOutline } from "react-icons/md";
 import { GoQuestion } from "react-icons/go";
 import "./index.css";
 import {useLocation, useNavigate, useParams} from "react-router";
-import {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import * as client from "../client";
 import {createDefaultQuiz} from "../../../../utils";
 import Preview from "./index";
@@ -15,6 +15,7 @@ function QuizPreview() {
     const { pathname } = useLocation();
     const [quiz, setQuiz] = useState<Quiz | null>();
     const [questionNumbers,  setQuestionNumbers] = useState<number[]>([]);
+    const [overrideIndex, setOverrideIndex] = useState<number | null>(null);
 
     useEffect(() => {
         const fetchQuiz = async () => {
@@ -57,7 +58,7 @@ function QuizPreview() {
         </div>
         <hr/>
         <div>
-            {quiz && <PreviewQuestion questionList={questionNumbers} questions={quiz.questions}/> }
+            {quiz && <PreviewQuestion showAll={!quiz.details.one_question} questionList={questionNumbers} questions={quiz.questions} overrideIndex={overrideIndex} setOverrideIndex={(n: number | null) => setOverrideIndex(n)}/> }
         </div>
         <div className="preview-submit">
             Quiz saved at
@@ -71,10 +72,18 @@ function QuizPreview() {
         </div>
         <div className="d-flex flex-column preview-question-list">
             <h3>Questions</h3>
-            <div className="preview-question-list-item">
-                <GoQuestion  />
-                <span style={{color: "#c83320"}}>Question 1</span>
-            </div>
+            {questionNumbers.map((question, index) => {
+                return (
+                    <div className="preview-question-list-item">
+                        <GoQuestion  />
+                        <span style={{color: "#c83320"}} onClick={() => {
+                            console.log(index);
+                            setOverrideIndex(index)
+                        }}>Question {index + 1}</span>
+                    </div>
+                )
+            })}
+
         </div>
     </div>
   );

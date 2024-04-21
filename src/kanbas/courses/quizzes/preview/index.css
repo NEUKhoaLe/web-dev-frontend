@@ -24,12 +24,14 @@
     border: solid #959595 1px;
     padding: 10px;
     justify-content: space-between;
+    align-content: end;
 }
 
 .preview-question-body {
     border: solid #959595 1px;
     padding: 10px;
     border-top-style: none;
+    padding: 30px 20px 30px 20px;
 }
 
 .preview-next {
@@ -44,8 +46,9 @@
     margin-left: 30px;
 }
 
-.preview-question-list-item #GoQuestion {
-    margin-left: 30px;
+.preview-question-list-item span {
+    /*margin-top: 3px;*/
+    margin: 0 0 0 10px;
 }
 
 .preview-move {
@@ -54,4 +57,26 @@
 
 .preview-back {
     margin: 20px 0 20px 0;
+}
+
+.preview-boolean-question {
+    /*margin: 20px 10px 20px 10px;*/
+}
+
+.preview-answer {
+    margin-left: 25px;
+}
+
+.preview-answer label {
+    padding-left: 7px;
+}
+
+.preview-short-answer {
+    margin-top: 15px;
+}
+
+.preview-short-answer input {
+    background-color: #eeeeee;
+    border: solid 1px #cccccc;
+    border-radius: 3px;
 }

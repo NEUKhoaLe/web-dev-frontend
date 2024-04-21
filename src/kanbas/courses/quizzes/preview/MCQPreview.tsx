@@ -15,7 +15,10 @@ function MCQPreview({question}: {question: QuizQuestion}) {
                     return (
                         <div>
                             <hr/>
-                            <span>{choices.name}</span>
+                            <div className="preview-answer">
+                                <input type="radio" value="True" name="choice"/>
+                                <label>{choices.name}</label>
+                            </div>
                         </div>
                     )
                 })}

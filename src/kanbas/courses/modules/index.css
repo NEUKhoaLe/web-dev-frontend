@@ -51,7 +51,7 @@
 }
 
 .question-editor-form {
-  max-width: min-content;
+  max-width: max-content;
 }
 
 .question-editor-points-form {
