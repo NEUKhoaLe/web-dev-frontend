@@ -56,7 +56,7 @@ function QuizQuestionsEditor({ quiz, setQuiz, handleSave }: { quiz: Quiz, setQui
                       return i.question_number !== q.question_number
                       })}
                   })
-                }}></button>
+                }}>Delete</button>
                 </td>
             </tr>
             )
