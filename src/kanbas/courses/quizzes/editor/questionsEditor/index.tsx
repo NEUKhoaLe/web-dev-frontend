@@ -50,6 +50,14 @@ function QuizQuestionsEditor({ quiz, setQuiz, handleSave }: { quiz: Quiz, setQui
             <td>{q.question_number}</td>
             <td>{q.question_title}</td>
             <td><button onClick={() => setCurrentQuestion(q)}>Edit</button></td>
+                <td><button onClick={() => {
+                  setQuiz(prevState => {
+                    return {...prevState, questions: prevState.questions.filter(i => {
+                      return i.question_number !== q.question_number
+                      })}
+                  })
+                }}></button>
+                </td>
             </tr>
             )
           })}
