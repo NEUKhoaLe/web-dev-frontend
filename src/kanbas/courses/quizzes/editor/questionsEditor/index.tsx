@@ -41,6 +41,7 @@ function QuizQuestionsEditor({ quiz, setQuiz, handleSave }: { quiz: Quiz, setQui
           <th>Question Number</th>
           <th>Question Title</th>
           <th>Edit</th>
+          <th>Delete</th>
         </tr>
         </thead>
         <tbody>
